@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
 
 def index(request):
     if not request.user.is_authenticated:
@@ -12,16 +13,16 @@ def index(request):
 
 def login_view(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
             login(request, user)
             return HttpResponseRedirect(reverse("users:index"))
         else:
-            messages.success(request, "Invalid Credentials.")
-            return render(request, "users/login.html")
-    return render(request, "users/login.html")
+            messages.error(request, "Invalid Credentials.")
+    else:
+        form = AuthenticationForm()
+    return render(request, "users/login.html", {"form": form})
 
 def logout_view(request):
     logout(request)
