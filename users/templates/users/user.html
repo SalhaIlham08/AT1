@@ -1,6 +1,49 @@
 {% extends "users/layout.html" %}
 {% block body %}
-    <h1>Welcome, {{ request.user.first_name }}</h1>
-    <p>Username: {{ request.user.username }}</p>
-    <a href="{% url 'eduprod:index' %}">Take the Quiz</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Lab</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #content {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 2px solid #000;
+        }
+        #logo {
+            cursor: pointer;
+        }
+        #username {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="content">
+            <div id="logo" onclick="window.location.href='homepage.html'">
+                Welcome to Learning Lab!<br>
+                What do you want to do?
+            </div>
+            <div>
+                <button onclick="window.location.href='study.html'">STUDY</button>
+                <button onclick="window.location.href='revise.html'">REVISE</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 {% endblock %}
