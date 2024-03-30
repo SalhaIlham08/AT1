@@ -1,6 +1,7 @@
 body { 
     font-family: Arial, sans-serif; 
-    padding: 0px; 
+    padding: 0px;
+    background-color: #abdbe3; 
 }
 
 .question, .answer { 
@@ -37,6 +38,7 @@ p {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    background-color: #abdbe3;
 }
 .logo img {
     height: auto; /* Keep image aspect ratio */
@@ -45,4 +47,5 @@ p {
 .user-info {
     display: flex;
     align-items: center;
+    font-size: medium; /* Adjust the font size as needed */
 }
