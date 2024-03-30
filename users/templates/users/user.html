@@ -11,6 +11,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            font-size: xx-large;
         }
         #container {
             display: flex;
@@ -20,25 +21,29 @@
         }
         #content {
             background-color: #f0f0f0;
-            padding: 20px;
+            padding: 100px;
             border: 2px solid #000;
         }
         #logo {
             cursor: pointer;
         }
-        #username {
-            margin-left: auto;
+        #button-container {
+            display: flex;
+            justify-content: center;
+            button {
+                margin: 10px; /* Adjust the space between buttons as needed */
+            }
         }
     </style>
 </head>
 <body>
     <div id="container">
         <div id="content">
-            <div id="logo" onclick="window.location.href='homepage.html'">
+            <div>
                 Welcome to Learning Lab!<br>
                 What do you want to do?
             </div>
-            <div>
+            <div id="button-container">
                 <button onclick="window.location.href='study.html'">STUDY</button>
                 <button onclick="window.location.href='revise.html'">REVISE</button>
             </div>
