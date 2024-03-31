@@ -9,12 +9,6 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 
 @login_required
-def index(request):
-    questions = Question.objects.all()
-    questions_json = serializers.serialize('json', questions)
-    return render(request, 'eduprod/index.html', {'questions_json': questions_json})
-
-
 class TopicCreate(LoginRequiredMixin, CreateView):
     model = Topic
     form_class = TopicForm

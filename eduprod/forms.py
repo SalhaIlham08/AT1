@@ -3,16 +3,21 @@ from .models import Topic, Subtopic, Question
 
 class TopicForm(forms.ModelForm):
     class Meta:
-        topic = forms.ModelChoiceField(queryset=Topic.objects.all())
         model = Topic
-        fields = ['name']
+        fields = ['topic_name']
 
 class SubtopicForm(forms.ModelForm):
+    topic = forms.ModelChoiceField(queryset=Topic.objects.all())
+
     class Meta:
         model = Subtopic
-        fields = ['topic', 'name']
+        fields = ['topic_name', 'subtopic_name']
         
 class QuestionForm(forms.ModelForm):
+    topic = forms.ModelChoiceField(queryset=Topic.objects.all())
+    subtopic = forms.ModelChoiceField(queryset=Subtopic.objects.all())
+
     class Meta:
         model = Question
-        fields = ['topic', 'subtopic', 'question_text', 'answer_text']
+        fields = ['topic_name', 'subtopic_name', 'question_text', 'answer_text']
+
