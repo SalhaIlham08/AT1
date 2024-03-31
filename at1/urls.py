@@ -6,4 +6,5 @@ urlpatterns = [
     path('users/', include(('users.urls', 'users'), namespace='users')),
     path('eduprod/', include(('eduprod.urls', 'eduprod'), namespace='eduprod')),
     path('accounts/login/', include('users.urls')),
+    path ('eduprod/study/', include ('eduprod.urls'))
 ]

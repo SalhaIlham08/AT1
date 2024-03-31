@@ -1,0 +1,10 @@
+{% extends "eduprod/layout.html" %}
+{% block body %}
+<h2>Topics</h2>
+<ul>
+    {% for topic in topic_list %}
+    <li>{{ topic.topic_name }} - <a href="{% url 'eduprod:topic_delete' topic.id %}">Delete</a></li>
+    {% endfor %}
+</ul>
+<a href="{% url 'eduprod:topic_add' %}">Add A New Topic</a>
+{% endblock %}

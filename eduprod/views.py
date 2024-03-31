@@ -1,10 +1,10 @@
 from django.core import serializers
 from django.shortcuts import render
-from .models import Question
+from .models import Topic, Subtopic, Question
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import QuestionForm
+from .forms import TopicForm, SubtopicForm, QuestionForm
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 
@@ -13,6 +13,48 @@ def index(request):
     questions = Question.objects.all()
     questions_json = serializers.serialize('json', questions)
     return render(request, 'eduprod/index.html', {'questions_json': questions_json})
+
+
+class TopicCreate(LoginRequiredMixin, CreateView):
+    model = Topic
+    form_class = TopicForm
+    template_name = 'eduprod/topic_form.html'
+    success_url = reverse_lazy('eduprod:topic_list')  # Redirect to the topic list page after creating
+
+class TopicDelete(LoginRequiredMixin, DeleteView):
+    model = Topic
+    template_name = 'eduprod/topic_confirm_delete.html'
+    success_url = reverse_lazy('eduprod:topic_list')  # Redirect to the topic list page after deleting
+
+class TopicList(LoginRequiredMixin, ListView):
+    model = Topic
+    context_object_name = 'topic'
+    template_name = 'eduprod/topic_list.html'
+
+
+class SubtopicCreate(LoginRequiredMixin, CreateView):
+    model = Subtopic
+    form_class = SubtopicForm
+    template_name = 'eduprod/subtopic_form.html'
+    success_url = reverse_lazy('eduprod:subtopic_list')  # Redirect to the subtopic list page after creating
+
+class SubtopicUpdate(LoginRequiredMixin, UpdateView):
+    model = Subtopic
+    form_class = SubtopicForm
+    template_name = 'eduprod/subtopic_form.html'
+    success_url = reverse_lazy('eduprod:subtopic_list')  # Redirect to the subtopic list page after updating
+
+
+class SubtopicDelete(LoginRequiredMixin, DeleteView):
+    model = Subtopic
+    template_name = 'eduprod/subtopic_confirm_delete.html'
+    success_url = reverse_lazy('eduprod:subtopic_list')  # Redirect to the subtopic list page after deleting
+
+class SubtopicList(LoginRequiredMixin, ListView):
+    model = Subtopic
+    context_object_name = 'subtopic'
+    template_name = 'eduprod/subtopic_list.html'
+
 
 class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
@@ -25,7 +67,6 @@ class QuestionUpdate(LoginRequiredMixin, UpdateView):
     form_class = QuestionForm
     template_name = 'eduprod/question_form.html'
     success_url = reverse_lazy('eduprod:question_list')  # Redirect to the question list page after updating
-
 
 class QuestionDelete(LoginRequiredMixin, DeleteView):
     model = Question
