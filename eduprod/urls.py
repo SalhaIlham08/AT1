@@ -19,7 +19,7 @@ urlpatterns = [
     path('question/<int:pk>/edit/', QuestionUpdate.as_view(), name='question_edit'),
     path('question/<int:pk>/delete/', QuestionDelete.as_view(), name='question_delete'),
 
-     path('', views.index, name='index'),
+    path('', views.index, name='index'),
     
 ]
 

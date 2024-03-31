@@ -6,5 +6,5 @@
     <li>{{ topic.topic_name }} - <a href="{% url 'eduprod:topic_delete' topic.id %}">Delete</a></li>
     {% endfor %}
 </ul>
-<a href="{% url 'eduprod:topic_add' %}">Add A New Topic</a>
+<a href="{% url 'eduprod:topic_form' %}">Add A New Topic</a>
 {% endblock %}
