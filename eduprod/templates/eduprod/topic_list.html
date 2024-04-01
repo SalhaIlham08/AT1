@@ -2,9 +2,10 @@
 {% block body %}
 <h2>Topics</h2>
 <ul>
-    {% for topic in topic_list %}
-    <li>{{ topic.topic_name }} - <a href="{% url 'eduprod:topic_delete' topic.id %}">Delete</a></li>
+    {% for topic in topics %}
+    <li>{{ topic.topic_name }} - <a href="{% url 'eduprod:topic_delete' topic.id %}">Delete</a> | <a href="{% url 'eduprod:subtopic_list' topic.id %}">View Subtopics</a></li>
     {% endfor %}
 </ul>
 <a href="{% url 'eduprod:topic_form' %}">Add A New Topic</a>
 {% endblock %}
+

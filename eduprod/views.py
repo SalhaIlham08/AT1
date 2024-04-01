@@ -9,6 +9,11 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 
 @login_required
+class TopicList(LoginRequiredMixin, ListView):
+    model = Topic
+    context_object_name = 'topic'
+    template_name = 'eduprod/topic_list.html'
+    
 class TopicCreate(LoginRequiredMixin, CreateView):
     model = Topic
     form_class = TopicForm
@@ -19,12 +24,6 @@ class TopicDelete(LoginRequiredMixin, DeleteView):
     model = Topic
     template_name = 'eduprod/topic_confirm_delete.html'
     success_url = reverse_lazy('eduprod:topic_list')  # Redirect to the topic list page after deleting
-
-class TopicList(LoginRequiredMixin, ListView):
-    model = Topic
-    context_object_name = 'topic'
-    template_name = 'eduprod/topic_list.html'
-
 
 class SubtopicCreate(LoginRequiredMixin, CreateView):
     model = Subtopic
@@ -49,6 +48,9 @@ class SubtopicList(LoginRequiredMixin, ListView):
     context_object_name = 'subtopic'
     template_name = 'eduprod/subtopic_list.html'
 
+    def get_queryset(self):
+        topic_id = self.kwargs['pk']
+        return Subtopic.objects.filter(topic_name_id=topic_id)
 
 class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
@@ -71,3 +73,7 @@ class QuestionList(LoginRequiredMixin, ListView):
     model = Question
     context_object_name = 'questions'
     template_name = 'eduprod/question_list.html'
+
+    def get_queryset(self):
+        subtopic_id = self.kwargs['pk']
+        return Question.objects.filter(subtopic_name_id=subtopic_id)

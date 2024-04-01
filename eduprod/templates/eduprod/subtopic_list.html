@@ -3,9 +3,10 @@
 {% block body %}
   <h2>Subtopic: {{ subtopic.subtopic_name }}</h2>
   <ul>
-    {% for subtopic in subtopic_list %}
-    <li>{{ subtopic.subtopic_name }} - <a href="{% url 'eduprod:subtopic_edit' subtopic.id %}">Edit</a> | <a href="{% url 'eduprod:subtopic_delete' subtopic.id %}">Delete</a></li>
+    {% for subtopic in subtopics %}
+    <li>{{ subtopic.subtopic_name }} - <a href="{% url 'eduprod:subtopic_edit' subtopic.id %}">Edit</a> | <a href="{% url 'eduprod:subtopic_delete' subtopic.id %}">Delete</a> | <a href="{% url 'eduprod:question_list' subtopic.id %}">View Questions</a></li>
     {% endfor %}
   </ul>
   <a href="{% url 'eduprod:subtopic_form' subtopic.id %}">Add a new subtopic</a>
 {% endblock %}
+
