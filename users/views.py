@@ -6,11 +6,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
+#Checks if the user is authenticated. If the user isn't, it redirects the user to the login page
 def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("users:login"))
     return render(request, "users/user.html")
 
+#Allows the user to login
 def login_view(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -24,6 +26,7 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, "users/login.html", {"form": form})
 
+#Allows the user to logout
 def logout_view(request):
     logout(request)
     messages.success(request, "Successfully logged out.")

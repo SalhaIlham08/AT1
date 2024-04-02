@@ -1,6 +1,6 @@
 body { 
     font-family: Arial, sans-serif; 
-    padding: 0px;
+    padding: 0px; /* space between the content of an element and its border*/
     background-color: #abdbe3; 
 }
 

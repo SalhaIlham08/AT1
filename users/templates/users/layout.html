@@ -11,7 +11,7 @@
             <img src="{% static 'users/logo.gif' %}" alt="Logo" style="width: 100px; height: auto;">
         </div>
         <div class="user-info">
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated %} <!--This is displayed only after the user has logged in -->
             <span>{{ user.username }}</span>
             <form action="{% url 'users:logout' %}" method="post" style="margin: 0; margin-left: 20px;">
                 {% csrf_token %}
